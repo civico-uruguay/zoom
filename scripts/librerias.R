@@ -11,4 +11,4 @@ library(qdap)
 library(NLP)
 library(graph)
 library(Rgraphviz)
-
+library(ngram)

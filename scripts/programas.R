@@ -4,6 +4,7 @@ source("scripts/funciones.R")
 # Levantar Programas ------------------------------------------------------
 
 pn <- read_lines("data/programas/Partido Nacional.txt")
+pg <- read_lines("data/programas/Partido de la Gente.txt")
 ca <- read_lines("data/programas/Cabildo Abierto.txt")
 pc <- read_lines("data/programas/Partido Colorado.txt")
 pi <- read_lines("data/programas/Partido Independiente.txt")
@@ -13,19 +14,42 @@ fa <- read_lines("data/programas/FA - Bases Programaticas 2020-2025.txt")
 # Ordenar y Limpiar en Oraciones - Matrices y TDM -----------------------------------
 
 pn=oraciones(pn)
+pg=oraciones(pg)
 ca=oraciones(ca)
 pc=oraciones(pc)
 pi=oraciones(pi)
 up=oraciones(up)
 fa=oraciones(fa)
 
-partidos = c("ca","fa","pc","pi","pn","up")
-
+partidos = c("ca","fa","pc","pg","pi","pn","up")
+#partidos = c("ca")
 for (i in 1:length(partidos)){
   assign(paste0(partidos[i],"_palabras"), limpiar(get(partidos[i])))
   assign(paste0(partidos[i],"_tdm"), tdm(get(paste0(partidos[i],"_palabras"))))
-  assign(paste0(partidos[i],"_matrix"), matrix(get(paste0(partidos[i],"_palabras"))))
+  assign(paste0(partidos[i],"_matrix"), matriz(get(paste0(partidos[i],"_palabras"))))
 }
+
+
+# Tabla Palabras - Oraciones   --------------------------------------------
+npalabras <- data.frame(matrix(ncol=length(partidos), nrow=0))
+colnames(npalabras) <- partidos
+lista_palabras=c("educación", "trabajo","seguridad", "economía","pobreza")
+
+for (i in 1:length(partidos)){
+  aux_npalabras=wordcount(get(partidos[i]), sep = " ", count.function = sum)
+  npalabras["palabras", i] = aux_npalabras
+  npalabras["oraciones", i] =length(oraciones(get(partidos[i])))
+  aux=get(paste0(partidos[i],"_matrix"))
+    for (j in lista_palabras){
+      frecuencia=aux[aux$palabra==j,]$frec
+      if(!identical(frecuencia, numeric(0))){
+        npalabras[j, i] = frecuencia
+        #h=paste0(j,"_porc")
+        #npalabras[h, i] = round((frecuencia/aux_npalabras)*100,2)
+      }
+    }
+  }
+
 
 
 # Palabras más frecuentes -------------------------------------------------

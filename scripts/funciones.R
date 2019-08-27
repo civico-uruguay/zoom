@@ -8,6 +8,8 @@ oraciones <- function(raw){
   nov_text=nov_text[!nov_text %in% c(" ","")]
   texto <- paste(nov_text,collapse=" ")
   oraciones=unlist(strsplit(texto, "\\."))
+  oraciones = oraciones[which(oraciones!="")]
+  oraciones = as.array(oraciones[which(oraciones!=" ")])
   return(oraciones)
 }
 limpiar <- function(nov_raw){ 
@@ -33,6 +35,7 @@ limpiar <- function(nov_raw){
   
   nov_text <- gsub("[[:cntrl:]]", " ", nov_text)
   nov_text <- gsub("[[:punct:]]", " ", nov_text)
+  nov_text <- gsub("[^[:alnum:] ]", " ", nov_text)
   nov_text <- gsub("•", " ", nov_text)
   nov_text <- gsub("", " ", nov_text)
   nov_text <- tolower(nov_text)
@@ -56,7 +59,7 @@ tdm <- function(nov_text){
   nov_tdm <- TermDocumentMatrix(nov_corpus)
   return(nov_tdm)
 }
-matrix <- function(nov_text){
+matriz <- function(nov_text){
   nov_tdm=tdm(nov_text)
   
   nov_mat <- as.matrix(nov_tdm)

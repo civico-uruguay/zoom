@@ -1,4 +1,4 @@
-Mismos principios.
+﻿Mismos principios.
 
 Nuevos sueños.
 
@@ -62,7 +62,7 @@ DEFENSA NACIONAL................................................................
 
 PREÁMBULO
 
-NUEVOS SUEÑOS EMPIEZAN HOY
+NUEVOS SUEÑOS EMPIEZAN HOY.
 Hemos recorrido un largo camino de la mano de nuestros sueños, hecho de lucha contra el fascismo,
 acercando una tras otra a las nuevas generaciones, vislumbrando siempre una luz a lo lejos. Hemos confluido a lo largo de los años desde distintas vertientes y sensibilidades, con la certeza de que sólo juntos
 podíamos convertirnos en una fuerza transformadora, capaz de contribuir a crear una sociedad solidaria,

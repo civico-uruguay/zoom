@@ -37,9 +37,10 @@ lista_palabras=c("educación", "trabajo","seguridad", "economía","pobreza")
 
 for (i in 1:length(partidos)){
   aux_npalabras=wordcount(get(partidos[i]), sep = " ", count.function = sum)
-  npalabras["palabras", i] = aux_npalabras
   npalabras["oraciones", i] =length(oraciones(get(partidos[i])))
+  npalabras["palabras", i] = aux_npalabras
   aux=get(paste0(partidos[i],"_matrix"))
+  npalabras["palabras_unicas", i] = length(aux$palabra)
     for (j in lista_palabras){
       frecuencia=aux[aux$palabra==j,]$frec
       if(!identical(frecuencia, numeric(0))){

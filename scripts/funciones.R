@@ -3,13 +3,12 @@
 oraciones <- function(raw){
   nov_text <- gsub("[[:cntrl:]]", " ", raw)
   nov_text <- tolower(nov_text)
-  nov_text <- removeNumbers(nov_text)
   nov_text <- stripWhitespace(nov_text)
   nov_text=nov_text[!nov_text %in% c(" ","")]
   texto <- paste(nov_text,collapse=" ")
   oraciones=unlist(strsplit(texto, "\\."))
   oraciones = oraciones[which(oraciones!="")]
-  oraciones = as.array(oraciones[which(oraciones!=" ")])
+  oraciones = as.vector(oraciones[which(oraciones!=" ")])
   return(oraciones)
 }
 limpiar <- function(nov_raw){ 
@@ -44,7 +43,7 @@ limpiar <- function(nov_raw){
   nov_text <- removeNumbers(nov_text)
   nov_text <- stripWhitespace(nov_text)
   
-  nov_text <- removeWords(nov_text, words = c("tit","ps","mag","ello","través","as","vez","dra",
+  nov_text <- removeWords(nov_text, words = c("así","tit","ps","mag","ello","través","as","vez","dra",
                                               "usted", "pues", "tal", "tales","tan", "as?", "dijo",
                                               "cómo", "sino", "entonces", "aunque", "don", "doña",
                                               "todas","fin","prof",

@@ -14,6 +14,7 @@ fa <- read_lines("data/programas/FA - Bases Programaticas 2020-2025.txt")
 
 partidos = c("ca","fa","pc","pg","pi","pn","up")
 
+#save(pn,pg,ca,pc,pi,up,fa,partidos, file="data/programas.RData")
 # Ordenar y Limpiar en Oraciones - Matrices y TDM -----------------------------------
 
 pn=oraciones(pn)

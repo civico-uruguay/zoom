@@ -113,6 +113,7 @@ ggplot(sent_fa, aes(index, sentiment, fill = partido)) +
 # tf - idf ----------------------------------------------------------------
 
 book_words <- tidy_books %>%
+  select(partido,word) %>% 
   count(partido, word, sort = TRUE)
 
 total_words <- book_words %>% 
